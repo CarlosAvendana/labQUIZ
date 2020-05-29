@@ -33,12 +33,27 @@ CREATE TABLE IF NOT EXISTS `estudiantes_curso`.`curso` (
   `idcurso` INT NOT NULL,
   `descripcion` VARCHAR(45) NULL,
   `creditos` INT NULL,
+  PRIMARY KEY (`idcurso`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `estudiantes_curso`.`matricula`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `estudiantes_curso`.`matricula` (
   `estudiante_id` INT NOT NULL,
-  PRIMARY KEY (`idcurso`),
-  INDEX `fk_curso_estudiante_idx` (`estudiante_id` ASC) VISIBLE,
-  CONSTRAINT `fk_curso_estudiante`
+  `curso_idcurso` INT NOT NULL,
+  PRIMARY KEY (`estudiante_id`, `curso_idcurso`),
+  INDEX `fk_estudiante_has_curso_curso1_idx` (`curso_idcurso` ASC) VISIBLE,
+  INDEX `fk_estudiante_has_curso_estudiante_idx` (`estudiante_id` ASC) VISIBLE,
+  CONSTRAINT `fk_estudiante_has_curso_estudiante`
     FOREIGN KEY (`estudiante_id`)
     REFERENCES `estudiantes_curso`.`estudiante` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_estudiante_has_curso_curso1`
+    FOREIGN KEY (`curso_idcurso`)
+    REFERENCES `estudiantes_curso`.`curso` (`idcurso`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
