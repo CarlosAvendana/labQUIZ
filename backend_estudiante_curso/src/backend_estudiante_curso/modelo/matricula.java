@@ -1,7 +1,6 @@
-package com.example.quiz.logicaNeg;
+package backend_estudiante_curso.modelo;
 
 public class matricula {
-
 
     private int estudiante_id;
     private int curso_idcurso;
