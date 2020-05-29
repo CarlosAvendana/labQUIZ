@@ -28,7 +28,7 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS PRC_DEL_ESTUDIANTE;
 
 DELIMITER //
-CREATE PROCEDURE PRC_DEL_ESTUDIANTE(id_ int(9)
+CREATE PROCEDURE PRC_DEL_ESTUDIANTE(id_ int(9))
 BEGIN 
 	delete from estudiantes_curso.estudiante 
 	where id=id_;
@@ -57,6 +57,53 @@ BEGIN
 END 
 //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS PRC_OBTIENE_CURSOS;
+DELIMITER //
+CREATE PROCEDURE PRC_OBTIENE_CURSOS()
+BEGIN
+	SELECT idcurso,descripcion,creditos FROM estudiantes_curso.curso;
+END 
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS PRC_INS_MATRICULA;
+DELIMITER //
+CREATE PROCEDURE PRC_INS_MATRICULA(idEst_ int(9),idCurs_ int(11))
+BEGIN
+	INSERT INTO estudiantes_curso.matricula(estudiante_id, curso_idcurso) values (idEst_,idCurs_);
+END
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS PRC_UPD_MATRICULA;
+DELIMITER //
+CREATE PROCEDURE PRC_UPD_MATRICULA(idEst_ int(9),idCurs_ int(11))
+BEGIN
+	update estudiantes_curso.matricula
+	set estudiante_id=idEst_,curso_idcurso=idCurs_
+	where estudiante_id=idEst_ AND curso_idcurso=idCurs_;
+END
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS PRC_DEL_MATRICULA;
+
+DELIMITER //
+CREATE PROCEDURE PRC_DEL_MATRICULA(idEst_ int(9),idCurs_ int(11))
+BEGIN 
+	delete from estudiantes_curso.matricula 
+	where estudiante_id=idEst_ AND curso_idcurso=idCurs_;
+END
+//
+DELIMITER ;
+
+
+
+
+
+
+
 
 
 
