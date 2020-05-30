@@ -1,4 +1,5 @@
-package com.example.quiz.LogicaNeg;
+package com.example.quiz.logicaNeg;
+
 
 import java.io.Serializable;
 import java.util.Objects;
