@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Actividades.AddUppEstudiantes"></activity>
         <activity
-            android:name=".listado_estudiantes"
+            android:name=".Actividades.ListaEstudiantes"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

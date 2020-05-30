@@ -1,24 +1,23 @@
-package com.example.quiz.logicaNeg;
+package com.example.quiz.LogicaNeg;
 
-public class curso {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Curso implements Serializable {
 
     private int idcurso;
     private String descripcion;
     private int cresitos;
 
-    public curso() {
+    public Curso() {
     }
 
-    public curso(int idcurso, String descripcion, int cresitos) {
+    public Curso(int idcurso, String descripcion, int cresitos) {
         this.idcurso = idcurso;
         this.descripcion = descripcion;
         this.cresitos = cresitos;
     }
 
-    @Override
-    public String toString() {
-        return "curso{" + "idcurso=" + idcurso + ", descripcion=" + descripcion + ", cresitos=" + cresitos + '}';
-    }
 
     public int getIdcurso() {
         return idcurso;
@@ -44,5 +43,27 @@ public class curso {
         this.cresitos = cresitos;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Curso)) return false;
+        Curso curso = (Curso) o;
+        return getIdcurso() == curso.getIdcurso() &&
+                getCresitos() == curso.getCresitos() &&
+                Objects.equals(getDescripcion(), curso.getDescripcion());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdcurso(), getDescripcion(), getCresitos());
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "idcurso=" + idcurso +
+                ", descripcion='" + descripcion + '\'' +
+                ", cresitos=" + cresitos +
+                '}';
+    }
 }

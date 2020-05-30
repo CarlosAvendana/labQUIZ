@@ -1,23 +1,21 @@
-package com.example.quiz.logicaNeg;
+package com.example.quiz.LogicaNeg;
 
-public class matricula {
+import java.io.Serializable;
+import java.util.Objects;
 
+public class Matricula implements Serializable {
 
     private int estudiante_id;
     private int curso_idcurso;
 
-    public matricula() {
+    public Matricula() {
     }
 
-    public matricula(int estudiante_id, int curso_idcurso) {
+    public Matricula(int estudiante_id, int curso_idcurso) {
         this.estudiante_id = estudiante_id;
         this.curso_idcurso = curso_idcurso;
     }
 
-    @Override
-    public String toString() {
-        return "matricula{" + "estudiante_id=" + estudiante_id + ", curso_idcurso=" + curso_idcurso + '}';
-    }
 
     public int getEstudiante_id() {
         return estudiante_id;
@@ -35,4 +33,25 @@ public class matricula {
         this.curso_idcurso = curso_idcurso;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Matricula)) return false;
+        Matricula matricula = (Matricula) o;
+        return getEstudiante_id() == matricula.getEstudiante_id() &&
+                getCurso_idcurso() == matricula.getCurso_idcurso();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEstudiante_id(), getCurso_idcurso());
+    }
+
+    @Override
+    public String toString() {
+        return "Matricula{" +
+                "estudiante_id=" + estudiante_id +
+                ", curso_idcurso=" + curso_idcurso +
+                '}';
+    }
 }
