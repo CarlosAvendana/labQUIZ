@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.labotorio_quiz.Logic.Estudiante;
 import com.example.labotorio_quiz.R;
 
@@ -173,8 +172,6 @@ public class EstudianteAdapter extends RecyclerView.Adapter<EstudianteAdapter.My
             });
         }
     }
-
-
 
 
 }
