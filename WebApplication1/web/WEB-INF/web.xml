@@ -4,17 +4,9 @@
         <servlet-name>Server_Movil_Estudiante</servlet-name>
         <servlet-class>Controller.Server_Movil_Estudiante</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Server_Movil_Curso</servlet-name>
-        <servlet-class>Controller.Server_Movil_Curso</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Server_Movil_Estudiante</servlet-name>
         <url-pattern>/Server_Movil_Estudiante</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Server_Movil_Curso</servlet-name>
-        <url-pattern>/Server_Movil_Curso</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

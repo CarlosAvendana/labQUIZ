@@ -1,18 +1,33 @@
 package backend_estudiante_curso.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class estudiante {
 
     private int id;
     private String nombre;
     private String apellido;
     private int edad;
+    List<curso> listaCursos;
 
     public estudiante(int id, String nombre, String apellido, int edad) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
+        this.listaCursos=new ArrayList<>();
     }
+
+    public estudiante(int id, String nombre, String apellido, int edad, List<curso> listaCursos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.listaCursos = listaCursos;
+    }
+    
+    
 
     public estudiante() {
     }
@@ -53,5 +68,14 @@ public class estudiante {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
+    public List<curso> getListaCursos() {
+        return listaCursos;
+    }
+
+    public void setListaCursos(List<curso> listaCursos) {
+        this.listaCursos = listaCursos;
+    }
+    
 
 }

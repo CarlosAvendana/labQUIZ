@@ -38,6 +38,24 @@ public class Model{
         this.gestorMatricula = gestorMatricula;
     }
     
+    public void ingresarEstudiante(estudiante est){
+        try{
+            this.gestorEstudiante.insertarEstudiante(est.getId(),est.getNombre(),est.getApellido(), est.getEdad());
+            for(curso cur: est.getListaCursos())
+                this.gestorMatricula.insertarMatricula(est.getId(), cur.getIdcurso());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
+    public void eliminarEstudiante(estudiante est){
+        try{
+            for(curso cur: est.getListaCursos())
+                this.gestorMatricula.eliminarMatricula(est.getId(), cur.getIdcurso());
+            this.gestorEstudiante.eliminarEstudiante(est.getId());      
+        }catch(Exception e){
+            e.printStackTrace();
+        }  
+    }
     
 }

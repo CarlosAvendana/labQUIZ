@@ -7,6 +7,7 @@ package Controller;
 
 import backend_estudiante_curso.modelo.Model;
 import backend_estudiante_curso.modelo.estudiante;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -43,21 +44,16 @@ public class Server_Movil_Estudiante extends HttpServlet {
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        Model modelo = new Model();
+         Model modelo = new Model();
+         Gson gson = new Gson();
 
-        String _id = request.getParameter("id");
-        String _nombre = request.getParameter("nombre");
-        String _apellido = request.getParameter("apellido");
-        String _edad = request.getParameter("edad");
-        
-        int id = Integer.parseInt(_id);
-        int edad = Integer.parseInt(_edad);
+       estudiante est = gson.fromJson(request.getReader(),estudiante.class);
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             //out.println("<h5>Se insertara </h5>");
             //out.println("<h5>Profe: " + p.getId() + p.getNombre() + "</h5>");
-            modelo.getGestorEstudiante().insertarEstudiante(id,_nombre,_apellido,edad);
+            modelo.ingresarEstudiante(est);
 
         }
 
@@ -129,20 +125,15 @@ public class Server_Movil_Estudiante extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          Model modelo = new Model();
+         Gson gson = new Gson();
 
-        String _id = request.getParameter("id");
-        String _nombre = request.getParameter("nombre");
-        String _apellido = request.getParameter("apellido");
-        String _edad = request.getParameter("edad");
-        
-         int id = Integer.parseInt(_id);
-        int edad = Integer.parseInt(_edad);
+       estudiante est = gson.fromJson(request.getReader(),estudiante.class);
         
           try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             //out.println("<h5>Se modificara </h5>");
             //  out.println("<h5>String " + p.getId() + p.getNombre() + "</h5>");
-            modelo.getGestorEstudiante().actualizarEstudiante(id, _nombre, _apellido, edad);
+            modelo.getGestorEstudiante().actualizarEstudiante(est.getId(),est.getNombre(),est.getApellido(),est.getEdad());
         }
     }
     
@@ -150,14 +141,16 @@ public class Server_Movil_Estudiante extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
 
-        Model model = new Model();
-        int _id = Integer.parseInt(request.getParameter("id"));
+         Model modelo = new Model();
+         Gson gson = new Gson();
+
+       estudiante est = gson.fromJson(request.getReader(),estudiante.class);
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             //out.println("<h5> Se eliminara </h5>");
             //out.println("<h5>" + id + "</h5>");
-            model.getGestorEstudiante().eliminarEstudiante(_id);
+            modelo.eliminarEstudiante(est);
         }
 
     }
