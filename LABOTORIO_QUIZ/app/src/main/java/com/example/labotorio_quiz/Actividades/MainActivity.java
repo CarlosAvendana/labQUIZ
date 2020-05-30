@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements EstudianteAdapter
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Estudiante?opc=2", new AsyncResponse() {
+        NetManager net = new NetManager("http://192.168.100.10:8084/WebApplication1/Server_Movil_Estudiante?opc=2", new AsyncResponse() {
             @Override
             public void processFinish(String output) {
                 try {

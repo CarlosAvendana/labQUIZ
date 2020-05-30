@@ -45,7 +45,7 @@ public class EstudianteAdapter extends RecyclerView.Adapter<EstudianteAdapter.My
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // basically a render
         final Estudiante carrera = carreraListFiltered.get(position);
-        holder.title1.setText(carrera.getId());
+        holder.title1.setText(""+carrera.getId());
         holder.title2.setText(carrera.getNombre());
         holder.description.setText(carrera.getApellido());
     }
