@@ -44,7 +44,6 @@ public class AddUpdEstudiante extends AppCompatActivity {
         apellidoFld.setText("");
         edadFld.setText("");
 
-        //receiving data from admCarreraActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
@@ -57,15 +56,13 @@ public class AddUpdEstudiante extends AppCompatActivity {
                 apellidoFld.setText(aux.getApellido());
                 edadFld.setText(aux.getEdad());
 
-                //edit action
                 fBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         editCarrera();
                     }
                 });
-            } else {         // is adding new Carrera object
-                //add new action
+            } else {
                 fBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

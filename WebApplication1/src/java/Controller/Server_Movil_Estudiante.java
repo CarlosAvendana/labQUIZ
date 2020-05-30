@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import backend_estudiante_curso.modelo.Model;
@@ -18,41 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- *
- * @author Luis Felipe
- */
 public class Server_Movil_Estudiante extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-          
+
         }
     }
-    
+
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-         Model modelo = new Model();
-         Gson gson = new Gson();
 
-       estudiante est = gson.fromJson(request.getReader(),estudiante.class);
+        Model modelo = new Model();
+        Gson gson = new Gson();
+
+        estudiante est = gson.fromJson(request.getReader(), estudiante.class);
 
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //out.println("<h5>Se insertara </h5>");
-            //out.println("<h5>Profe: " + p.getId() + p.getNombre() + "</h5>");
+
             modelo.ingresarEstudiante(est);
 
         }
@@ -71,7 +51,7 @@ public class Server_Movil_Estudiante extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          Model modelo = new Model();
+        Model modelo = new Model();
         String opc = request.getParameter("opc");
         String id = request.getParameter("id");
         if (Integer.parseInt(opc) == 1) {
@@ -124,33 +104,28 @@ public class Server_Movil_Estudiante extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         Model modelo = new Model();
-         Gson gson = new Gson();
+        Model modelo = new Model();
+        Gson gson = new Gson();
 
-       estudiante est = gson.fromJson(request.getReader(),estudiante.class);
-        
-          try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //out.println("<h5>Se modificara </h5>");
-            //  out.println("<h5>String " + p.getId() + p.getNombre() + "</h5>");
-            modelo.getGestorEstudiante().actualizarEstudiante(est.getId(),est.getNombre(),est.getApellido(),est.getEdad());
-        }
-    }
-    
-      protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //processRequest(request, response);
-
-         Model modelo = new Model();
-         Gson gson = new Gson();
-
-       estudiante est = gson.fromJson(request.getReader(),estudiante.class);
+        estudiante est = gson.fromJson(request.getReader(), estudiante.class);
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            //out.println("<h5> Se eliminara </h5>");
-            //out.println("<h5>" + id + "</h5>");
-            modelo.eliminarEstudiante(est);
+            //out.println("<h5>Se modificara </h5>");
+            //  out.println("<h5>String " + p.getId() + p.getNombre() + "</h5>");
+            modelo.getGestorEstudiante().actualizarEstudiante(est.getId(), est.getNombre(), est.getApellido(), est.getEdad());
+        }
+    }
+
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        Model modelo = new Model();
+        String codigo = request.getParameter("codigo");
+        try (PrintWriter out = response.getWriter()) {
+
+            modelo.getGestorEstudiante().eliminarEstudiante(codigo);
+
         }
 
     }
