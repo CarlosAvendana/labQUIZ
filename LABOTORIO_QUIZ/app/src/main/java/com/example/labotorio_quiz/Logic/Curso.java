@@ -1,10 +1,9 @@
-package com.example.quiz.logicaNeg;
-
+package com.example.labotorio_quiz.Logic;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class Curso implements Serializable {
+
 
     private int idcurso;
     private String descripcion;
@@ -19,6 +18,10 @@ public class Curso implements Serializable {
         this.cresitos = cresitos;
     }
 
+    @Override
+    public String toString() {
+        return "curso{" + "idcurso=" + idcurso + ", descripcion=" + descripcion + ", cresitos=" + cresitos + '}';
+    }
 
     public int getIdcurso() {
         return idcurso;
@@ -44,27 +47,4 @@ public class Curso implements Serializable {
         this.cresitos = cresitos;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Curso)) return false;
-        Curso curso = (Curso) o;
-        return getIdcurso() == curso.getIdcurso() &&
-                getCresitos() == curso.getCresitos() &&
-                Objects.equals(getDescripcion(), curso.getDescripcion());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getIdcurso(), getDescripcion(), getCresitos());
-    }
-
-    @Override
-    public String toString() {
-        return "Curso{" +
-                "idcurso=" + idcurso +
-                ", descripcion='" + descripcion + '\'' +
-                ", cresitos=" + cresitos +
-                '}';
-    }
 }

@@ -1,4 +1,5 @@
-package com.example.quiz.logicaNeg;
+package com.example.quiz.logic;
+
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -33,19 +34,6 @@ public class Matricula implements Serializable {
         this.curso_idcurso = curso_idcurso;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Matricula)) return false;
-        Matricula matricula = (Matricula) o;
-        return getEstudiante_id() == matricula.getEstudiante_id() &&
-                getCurso_idcurso() == matricula.getCurso_idcurso();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getEstudiante_id(), getCurso_idcurso());
-    }
 
     @Override
     public String toString() {

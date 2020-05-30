@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorPrimary">#03A9f4</color>
+    <color name="colorAccent">#CDDc39</color>
+    <color name="bg_row_background">#BDBDBD</color>
+    <color name="bg_row_background_delete">#0288D1</color>
+    <color name="bg_row_background_edit">#CDDc39</color>
+    <color name="item_name">#757575</color>
+    <color name="description">#212121</color>
+</resources>

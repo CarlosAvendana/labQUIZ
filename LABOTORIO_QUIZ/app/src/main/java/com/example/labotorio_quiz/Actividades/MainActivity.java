@@ -1,4 +1,4 @@
-package com.example.quiz.Actividades;
+package com.example.labotorio_quiz.Actividades;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -6,31 +6,32 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.SearchView;
-import android.widget.Toast;
+
+import com.example.labotorio_quiz.AccesoDatos.AsyncResponse;
+import com.example.labotorio_quiz.AccesoDatos.NetManager;
+import com.example.labotorio_quiz.Adaptador.EstudianteAdapter;
+import com.example.labotorio_quiz.Helper.RecyclerItemTouchHelper;
+import com.example.labotorio_quiz.Logic.Estudiante;
+import com.example.labotorio_quiz.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quiz.AccesoDatos.AsyncResponse;
-import com.example.quiz.AccesoDatos.NetManager;
-import com.example.quiz.Adaptador.EstudianteAdapter;
-import com.example.quiz.Helper.RecyclerItemTouchHelper;
-import com.example.quiz.R;
-import com.example.quiz.logicaNeg.Estudiante;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.View;
+
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class listado_estudiantes extends AppCompatActivity implements EstudianteAdapter.EstudianteAdapterListener, RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
-
+public class MainActivity extends AppCompatActivity implements EstudianteAdapter.EstudianteAdapterListener, RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
     private RecyclerView mRecyclerView;
     private EstudianteAdapter mAdapter;
@@ -54,6 +55,7 @@ public class listado_estudiantes extends AppCompatActivity implements Estudiante
             }
         });
     }
+
     private void whiteNotificationBar(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int flags = view.getSystemUiVisibility();
@@ -74,7 +76,7 @@ public class listado_estudiantes extends AppCompatActivity implements Estudiante
                     //found an item that can be updated
                     boolean founded = false;
                     for (Estudiante carrera : carreraList) {
-                        if (carrera.getId()== aux.getId()) {
+                        if (carrera.getId() == aux.getId()) {
                             carrera.setNombre(aux.getNombre());
                             carrera.setApellido(aux.getApellido());
                             carrera.setEdad(aux.getEdad());
@@ -203,7 +205,7 @@ public class listado_estudiantes extends AppCompatActivity implements Estudiante
             searchView.setIconified(true);
             return;
         }
-        Intent a = new Intent(this,listado_estudiantes.class);
+        Intent a = new Intent(this, MainActivity.class);
         a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(a);
         super.onBackPressed();

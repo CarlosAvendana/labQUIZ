@@ -1,4 +1,4 @@
-package com.example.quiz.Adaptador;
+package com.example.labotorio_quiz.Adaptador;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +10,15 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quiz.R;
-import com.example.quiz.logic.Estudiante;
+
+import com.example.labotorio_quiz.Logic.Estudiante;
+import com.example.labotorio_quiz.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 import java.util.Iterator;
 import java.util.List;
+
 
 public class EstudianteAdapter extends RecyclerView.Adapter<EstudianteAdapter.MyViewHolder> implements Filterable {
 

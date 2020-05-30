@@ -1,8 +1,7 @@
-package com.example.quiz.logicaNeg;
+package com.example.labotorio_quiz.Logic;
 
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class Estudiante implements Serializable {
 
@@ -52,22 +51,6 @@ public class Estudiante implements Serializable {
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Estudiante)) return false;
-        Estudiante that = (Estudiante) o;
-        return getId() == that.getId() &&
-                getEdad() == that.getEdad() &&
-                Objects.equals(getNombre(), that.getNombre()) &&
-                Objects.equals(getApellido(), that.getApellido());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getNombre(), getApellido(), getEdad());
     }
 
     @Override
