@@ -14,7 +14,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.labotorio_quiz.AccesoDatos.AsyncResponse;
@@ -25,6 +28,9 @@ import com.example.labotorio_quiz.Logic.Estudiante;
 import com.example.labotorio_quiz.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,15 +49,55 @@ public class MainActivity extends AppCompatActivity implements EstudianteAdapter
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Estudiantes");
+
+        mRecyclerView = findViewById(R.id.recycler_carrerasFld);
+
+
+        whiteNotificationBar(mRecyclerView);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Estudiante?opc=2", new AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+                try {
+                    JSONArray array = new JSONArray(output);
+                    carreraList = new ArrayList<>();
+                    for (int i = 0; i < array.length(); i++) {
+                        Estudiante carreer = new Estudiante();
+                        carreer.setEdad(Integer.parseInt(array.getJSONObject(i).getString("edad")));
+                        carreer.setApellido(array.getJSONObject(i).getString("apellido"));
+                        carreer.setId(Integer.parseInt(array.getJSONObject(i).getString("id")));
+                        carreer.setNombre(array.getJSONObject(i).getString("nombre"));
+                        carreraList.add(carreer);
+                    }
+                    mAdapter = new EstudianteAdapter(carreraList, MainActivity.this);
+                    mRecyclerView.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        net.execute(NetManager.GET);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                goToAddUpdCarrera();
             }
         });
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
+
+        checkIntentInformation();
+
+
     }
 
     private void whiteNotificationBar(View view) {
@@ -121,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements EstudianteAdapter
                 final int deletedIndex = viewHolder.getAdapterPosition();
                 // remove the item from recyclerView
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
-                NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?codigo=" + delete, new AsyncResponse() {
+                NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Estudiante?codigo=" + delete, new AsyncResponse() {
                     @Override
                     public void processFinish(String output) {
 

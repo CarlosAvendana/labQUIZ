@@ -99,7 +99,7 @@ public class AddUpdEstudiante extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera", new AsyncResponse() {
+            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Estudiante", new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
 
@@ -135,7 +135,7 @@ public class AddUpdEstudiante extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera", new AsyncResponse() {
+            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Estudiante", new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
 
