@@ -87,16 +87,18 @@ public class AddUpdEstudiante extends AppCompatActivity {
             String cod = idFld.getText().toString();
             String nom = nombreFld.getText().toString();
             String tit = apellidoFld.getText().toString();
+            String ed= edadFld.getText().toString();
 
             JSONObject carreer = new JSONObject();
             try {
-                carreer.put("codigo", cod);
+                carreer.put("id", cod);
                 carreer.put("nombre", nom);
-                carreer.put("titulo", tit);
+                carreer.put("apellido", tit);
+                carreer.put("edad", ed);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Estudiante", new AsyncResponse() {
+            NetManager net = new NetManager("http://192.168.100.10:8084//WebApplication1/Server_Movil_Estudiante", new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
 
