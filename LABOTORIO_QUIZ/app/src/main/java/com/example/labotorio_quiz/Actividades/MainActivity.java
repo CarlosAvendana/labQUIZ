@@ -161,13 +161,13 @@ public class MainActivity extends AppCompatActivity implements EstudianteAdapter
             if (viewHolder instanceof EstudianteAdapter.MyViewHolder) {
                 // get the removed item name to display it in snack bar
                 String name = carreraList.get(viewHolder.getAdapterPosition()).getNombre();
-                String delete = carreraList.get(viewHolder.getAdapterPosition()).getApellido();
+                String delete =""+carreraList.get(viewHolder.getAdapterPosition()).getId();
 
                 // save the index deleted
                 final int deletedIndex = viewHolder.getAdapterPosition();
                 // remove the item from recyclerView
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
-                NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Estudiante?codigo=" + delete, new AsyncResponse() {
+                NetManager net = new NetManager("http://192.168.100.10:8084//WebApplication1/Server_Movil_Estudiante?codigo=" + delete, new AsyncResponse() {
                     @Override
                     public void processFinish(String output) {
 

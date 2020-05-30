@@ -124,7 +124,7 @@ public class Server_Movil_Estudiante extends HttpServlet {
         String codigo = request.getParameter("codigo");
         try (PrintWriter out = response.getWriter()) {
 
-            modelo.getGestorEstudiante().eliminarEstudiante(codigo);
+            modelo.getGestorEstudiante().eliminarEstudiante(Integer.parseInt(codigo));
 
         }
 
